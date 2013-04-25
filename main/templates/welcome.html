@@ -1,0 +1,47 @@
+# extends 'base.html'
+
+# block content
+
+  {% if 2==2 %}
+  <div class="jumbotron">
+    <h1>
+      <img width="480px" height="320px" src="/p/img/khanw2_crop.jpg" alt="{{config.CONFIG_DB.brand_name}}">
+    </h1>
+    <p class="lead">
+      Vind de beste educatieve video's op YouTube...
+    </p>
+  </div>
+  {% endif %}
+  <!-- SEARCH BAR -->
+  {# <div class="row-fluid page-ribbon search-bar-container"> #}
+{#     <div class="span2 tagline">
+      <h1 class="searchheaderlogo">Search Youtube</h1>
+    </div> #}
+  {# <div class="span12 main-search"> #}
+  <form class="large-search-form" action="/results">
+    <input id="large-search-input" class="input-xxlarge placeholder simple-input search-input blur-on-esc large-search-bar ui-corner-all ui-autocomplete-input" placeholder="Zoek Youtube op educatieve videos" autocomplete="off" name="search_query">
+    <span class="ui-helper-hidden-accessible" role="status" aria-live="polite"></span>
+    <i class="icon-search"></i>
+        <div class="throbber"></div>
+  </form>
+  {# </div> #}
+  {# </div> #}
+  <!-- END SEARCH BAR -->
+  <hr>
+
+  <div class="row">
+    <div class="span4">
+      <h2><a href="http://www.khanacademie.nl/">Khan Academie</a></h2>
+      <p>Wij zijn op een missie om jou te helpen alles te leren, over onderwerpen die jou interesseren, wanneer jij het wilt en in je eigen tempo. De uiteenlopende onderwerpen worden met een groeiend aantal aangeboden in de vorm van video’s en oefeningen. </p>
+    </div>
+    <div class="span4">
+      <h2><a href="wiki.khanacademie.nl">Khan Wiki</a></h2>
+      <p>"Alles zelf doen is optellen, samenwerken is vermenigvuldigen."
+          Door gebruik te maken van deze wiki kun je ons helpen om het platform te verbeteren. Het belangrijkste doel is de aansluiting met de Nederlandse leerlijnen. Daarom hebben wij de leerlijnen op deze wiki geplaatst en vergeleken met de bestaande oefeningen. Uiteindelijk dient elk onderdeel uit de leerlijnen te worden voorzien van een oefening.</p>
+    </div>
+    <div class="span4">
+      <h2><a href="http://www.perceptum.nl/wp-signup.php?new=perceptum.nl">Perceptum</a></h2>
+      <p>Perceptum is een start-up die nog volop in ontwikkeling is. Momenteel hebben we een aantal projecten, diensten en ideeën waar wij mee bezig zijn. We zetten hier alles neer om u te informeren of om ideeën open te stellen voor discussie. Wilt u graag wat zeggen of een bijdrage leveren aan één van de projecten, reageer dan op de individuele pagina’s. Sharing is caring! :)</p>
+    </div>
+  </div>
+# endblock

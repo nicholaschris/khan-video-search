@@ -1,0 +1,37 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="{{url_for('welcome')}}">
+        {{config.CONFIG_DB.brand_name}}
+      </a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          # include 'bit/contact_menu.html'
+        </ul>
+        <ul class="nav">
+          <li class="{% if html_class == 'blog' %} active {% endif %}">
+            <a href="http://blog.khanacademie.nl/"><i class="icon-leaf"></i> Blog</a>
+          </li>
+        </ul>
+        <ul class="nav">
+          <li class="{% if html_class == 'browse-video' %} active {% endif %}">
+            <a href="http://www.khanacademie.nl/#browse"><i class="icon-film"></i> Browse Video's</a>
+          </li>
+        </ul>
+        <ul class="nav">
+          <li class="{% if html_class == 'browse-tag' %} active {% endif %}">
+            <a href="/browse"><i class="icon-tags"></i> Browse Tags</a>
+          </li>
+        </ul>
+        <ul class="nav pull-right">
+          # include 'bit/user_menu.html'
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

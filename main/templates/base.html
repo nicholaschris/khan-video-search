@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="{% block html_class %}{{html_class}}{% endblock %}" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      # block title
+        # if title
+          {{title}} |
+        # endif
+      # endblock
+      {{config.CONFIG_DB.brand_name}}
+    </title>
+    <link rel="icon" type="image/png" href="/p/favicon.ico">
+    {# <link href="/favicon.ico?leaf" rel="shortcut icon"> #}
+    # include 'bit/style.html'
+    # block head
+    # endblock
+    # include 'bit/analytics.html'
+    <style type="text/css">
+      .page-ribbon {
+          -moz-border-bottom-colors: none;
+          -moz-border-left-colors: none;
+          -moz-border-right-colors: none;
+          -moz-border-top-colors: none;
+          background: none repeat scroll 0 0 #ffffff;
+          border-color: #CCCCCC #CCCCCC #AAAAAA;
+          border-image: none;
+          border-style: solid;
+          border-width: 1px;
+          bottom: auto;
+          box-shadow: 0 1px 2px #CCCCCC;
+          height: 50px;
+          /*left: -7px;*/
+          overflow: visible;
+          margin: 10px 10px;
+          padding: 10px 24px;
+          /*position: absolute;*/
+          /*right: -7px;*/
+          /*top: 22px;*/
+          width: auto;
+      }
+      .page-ribbon .tagline {
+          white-space: nowrap;
+      }
+      h1.searchheaderlogo {
+          font-family: sans-serif;
+          font-weight: 100;
+          line-height: 30px;
+          font-size: 26px;
+
+            /*bottom: auto;*/
+            /*left: 50%;*/
+            /*margin-left: -110px;*/
+            /*position: absolute;*/
+            /*right: auto;*/
+            /*top: 12px;  was 9px */
+            /*font-size: 20px;*/
+      }
+      .large-search-form {
+        display: block;
+        position: relative;
+      }
+      div#large-search-input.placeholder, .large-search-bar.placeholder {
+        font-style: normal;
+      }
+      h1, h2, h3, h4, h5, div#large-search-input, .large-search-bar {
+          font-family: "MuseoSans300",sans-serif;
+      }
+      div#large-search-input, .large-search-bar {
+          -moz-box-sizing: border-box;
+          background-image: none;
+          border-radius: 4px 4px 4px 4px;
+          font-size: 14px;
+          height: 50px;
+          padding-left: 28px;
+          max-width: 100%;
+          width: 100%;
+      }
+
+      .ui-helper-hidden-accessible {
+          border: 0 none;
+          clip: rect(0px, 0px, 0px, 0px);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+      }
+      .search-bar-name {
+        display: inline;
+      }
+      .search-bar-form {
+        display: inline;
+      }
+      .large-search-form .icon-search {
+        color: #aaa;
+        font-size: 18px;
+        position: absolute;
+        top: 14px;
+        right: auto;
+        bottom: auto;
+        left: 9px;
+      }
+        [class^="icon-"], [class*=" icon-"] {
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        text-decoration: inherit;
+        display: inline;
+        width: auto;
+        height: auto;
+        vertical-align: baseline;
+        background-image: none!important;
+        background-position: 0 0;
+        background-repeat: repeat;
+        }
+      body {
+        background-image: -moz-linear-gradient(top, #ffffff, #f2f2f2);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f2f2f2));
+        background-image: -webkit-linear-gradient(top, #ffffff, #f2f2f2);
+        background-image: -o-linear-gradient(top, #ffffff, #f2f2f2);
+        background-image: linear-gradient(to bottom, #2F9CD5, #ffffff); /*, #f2f2f2);*/
+      }
+    </style>
+  </head>
+
+  <body>
+    # include 'bit/top_bar.html'
+
+    <div class="container main-container">
+      # include 'bit/notifications.html'
+      # block content
+      # endblock
+    </div>
+    # include 'bit/footer.html'
+    # include 'bit/script.html'
+    # block scripts
+    # endblock
+        <!-- Place this asynchronous JavaScript just before your </body> tag -->
+      <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script');
+        po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(po, s);
+      })();
+
+      function render() {
+        gapi.signin.render('customBtn', {
+          //'callback': 'signinCallback',
+          'clientid': '841077041629.apps.googleusercontent.com',
+          'cookiepolicy': 'single_host_origin',
+          'requestvisibleactions': 'http://schemas.google.com/AddActivity',
+          'scope': 'https://www.googleapis.com/auth/plus.login'
+        });
+      }
+      </script>
+      <!-- End asynchronous Javascript -->
+  </body>
+</html>
+

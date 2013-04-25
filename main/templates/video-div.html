@@ -1,0 +1,24 @@
+# extends 'base.html'
+
+# block content
+# if False:
+{{search_response}}
+# else
+{% for video in search_response['items'] %}
+<div class='container row-fluid' style="padding:15px 0px">
+  <div id="thumbnail-box" class='span3'><a href="/video/{{ video['id']['videoId'] }}"><img src="{{ video['snippet']['thumbnails']['high']['url'] }}"></a></div>
+  <div class='span9'>
+  	<div id="description-box" class='span9'><h4> {{video['snippet']['channelTitle']}} - {{ video['snippet']['title'] }} </h4></div>
+  	<div id="description-box" class='span9'><p> {{ video['snippet']['description'] }} </p></div>
+  	
+  </div>
+  <div class='span6 btn-group'>
+    <div class='btn'><a href='/{{ url_for-video }}'>Watch</a></div>
+    <div class='btn'>Rate</div>
+    <div class='btn'>Tag</div>
+  </div>
+  
+</div>
+{% endfor %}
+# endif
+# endblock
