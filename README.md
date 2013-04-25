@@ -6,10 +6,10 @@ Khan Video Search
 
 TODO:
 
-  Bring design in line with KhanAcademie
-  Allow for data to be collected and stored
-  Implement a voting system for videos returned by search
-  Implement a system that allows users to tag videos
+  - Bring design in line with KhanAcademie
+  - Allow for data to be collected and stored
+  - Implement a voting system for videos returned by search
+  - Implement a system that allows users to tag videos
   
 Running the build.py script (first time)
 ----------------------------------------
