@@ -1,28 +1,15 @@
-gae-init
-========
+Khan Video Search
+  
+  A webapp based on gae-init (see below for links) that allows users to search for 
+  Dutch educational youtube videos...  
 
-**gae-init** is the easiest way to start new applications on Google App Engine.
+TODO:
 
-
-Demo Page
----------
-
-The latest version is always accessible from: [http://gae-init.appspot.com][gaeinit]
-
-Documentation
--------------
-
-Visit the [docs][] page for more information, where you can
-also find a detailed [tutorial][] on how to build a phonebook application.
-
-Getting the code
-----------------
-The easiest way to get the code is to fork it and then clone it.
-
-Or you can clone it directly using the command line:
-
-    $ hg clone https://bitbucket.org/lipis/gae-init project-name
-
+  Bring design in line with KhanAcademie
+  Allow for data to be collected and stored
+  Implement a voting system for videos returned by search
+  Implement a system that allows users to tag videos
+  
 Running the build.py script (first time)
 ----------------------------------------
 
