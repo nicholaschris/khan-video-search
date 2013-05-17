@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 # block content
+# if False:
 <div class="row-fluid">
   {% for vid in video_ids_title%}
   {# {{search_result}} #}
@@ -13,4 +14,18 @@
     <!-- {{ search_result }} -->
     {% endfor %}
 </div>
+# else
+<div class="row-fluid">
+  {% for video in search_response['items']%}
+  {# {{search_result}} #}
+  <div class="row-fluid">
+    <h3>Video - {{ video['snippet']['title'] }}</h3>
+    <iframe class="container well span9" width="640" height="480" src="http://www.youtube.com/embed/{{ video['id']['videoId'] }}?
+                feature=player_embedded" frameborder="0" allowfullscreen></iframe>
+    <p class="span2"><a class="btn" href="#">View details &raquo;</a></p>
+    </div>
+    <!-- {{ search_result }} -->
+    {% endfor %}
+</div>
+# endif
 #endblock

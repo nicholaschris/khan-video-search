@@ -29,6 +29,11 @@ from apiclient.discovery import build
 from optparse import OptionParser
 from google.appengine.api import users
 
+import datetime
+from google.appengine.ext import db
+
+# from google.appengine.api import users
+
 # Set DEVELOPER_KEY to the "API key" value from the "Access" tab of the
 # Google APIs Console http://code.google.com/apis/console#access
 # Please ensure that you have enabled the YouTube Data API for your project.
@@ -40,6 +45,27 @@ FREEBASE_SEARCH_URL = "https://www.googleapis.com/freebase/v1/search?%s"
 
 # JINJA_ENVIRONMENT = jinja2.Environment(
 #    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+################################################################################
+### DATABASE STUFF FOR STUFF LIKE VIDEO VOTING
+################################################################################
+
+DEFAULT_DATABASE_NAME = 'default_database'
+
+
+# We set a parent key on the 'Greetings' to ensure that they are all in the same
+# entity group. Queries across the single entity group will be consistent.
+# However, the write rate should be limited to ~1/second.
+
+def database_key(database_name=DEFAULT_DATABASE_NAME):
+    """Constructs a Datastore key for a Guestbook entity with guestbook_name."""
+    return db.Key('VideoDatabase', database_name)
+
+class VideoDB(db.Model):
+  video_id = db.StringProperty(required=True)
+  votes = db.IntegerProperty(required=True)
+
+
+
 
 ################################################################################
 # YouTube API stuff
@@ -208,6 +234,16 @@ def youtube_search(options):
 ################################################################################
 @app.route('/results', methods=['POST', 'GET'])
 def results():
+  # database_name = self.request.get('database_name',
+  #                                         DEFAULT_DATABASE_NAME)
+  # votes_query = VideoDB.query(
+  #   ancestor=database_key(database_name)).order(VideoDB.votes)
+    
+  # votes = votes_query.fetch(10)
+  # video_db = VideoDB(parent=guestbook_key(guestbook_name))
+  # video_db.video_id = 0 #video_id
+  # video_db.votes = 0
+  # video_db.put() 
   if flask.request.method == 'GET':
     search_term = flask.request.args.get('search_query', '')
     parser = OptionParser()
@@ -224,28 +260,33 @@ def results():
     parser.add_option("--safeSearch", dest="safeSearch", help="none/moderate/strict",
           default="moderate")
     (options, args) = parser.parse_args()
- #   video_id_list = get_video_id(options)
+    video_id_list = get_video_id(options)
     search_response = youtube_search(options)
-    url_for_video = flask.url_for('video', videoId=search_response['items'][0]['id']['videoId'])
-    print url_for_video
- #   video_ids=[]
- #   title_list=[]
- #   video_ids_title=[]
- #   for item in xrange(0, len(video_id_list[0])):
- #       video_ids_title.append((video_id_list[0][item], video_id_list[1][item]))
-#        video_ids.append(item_ids)
-#        title_list.append(item_title)
+    freebase_response = get_topic_id(search_term, options)
+    # print search_response
+    # url_for_video = flask.url_for('video', videoId=search_response['items'][0]['id']['videoId'])
+    # print url_for_video
+    # video_ids=[]
+    # title_list=[]
+    # video_ids_title=[]
+    # for item in xrange(0, len(video_id_list[0])):
+    #    video_ids_title.append((video_id_list[0][item], video_id_list[1][item]))
+    #    video_ids.append(item_ids)
+    #    title_list.append(item_title)
   if False:
     return flask.redirect(flask.url_for('welcome'))
   return flask.render_template(
+      # 'results.html',
       'video-div.html',
       html_class='results',
       search_response = search_response,
-      url_for_video = url_for_video
+      freebase_response = freebase_response,
+      # url_for_video = url_for_video,
+      url_for = flask.url_for,
       #~ search_term=search_term,
       #~ video_ids=video_ids,
       #~ title_list=title_list,
-      #~ video_ids_title = video_ids_title,
+      # video_ids_title = video_ids_title,
     )
     
 ################################################################################
@@ -253,7 +294,10 @@ def results():
 ###############################################################################
 @app.route('/video/<videoId>')
 def video(videoId):
-  pass
+  return flask.render_template(
+    'video.html', 
+    videoId = videoId,)
+  # pass
 
 ################################################################################
 # Welcome Page

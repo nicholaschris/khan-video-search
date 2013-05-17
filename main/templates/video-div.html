@@ -2,9 +2,11 @@
 
 # block content
 # if False:
+
 {{search_response}}
 # else
 {% for video in search_response['items'] %}
+
 <div class='container row-fluid' style="padding:15px 0px">
   <div id="thumbnail-box" class='span3'><a href="/video/{{ video['id']['videoId'] }}"><img src="{{ video['snippet']['thumbnails']['high']['url'] }}"></a></div>
   <div class='span9'>
@@ -13,9 +15,12 @@
   	
   </div>
   <div class='span6 btn-group'>
-    <div class='btn'><a href='/{{ url_for-video }}'>Watch</a></div>
+    {# <div class='btn'><a href='/{{ url_for-video[0] }}'>Watch</a></div> #}
+    <div class='btn'><a href="/video/{{ video['id']['videoId'] }}">Watch</a></div>
+    {# <div class='btn'><a href='/{{ url_for_video }}'>Watch</a></div> #}
     <div class='btn'>Rate</div>
     <div class='btn'>Tag</div>
+    {# <div class='no-of-votes'>{{ votes }}</div> #}
   </div>
   
 </div>
