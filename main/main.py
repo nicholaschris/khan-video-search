@@ -228,7 +228,9 @@ def youtube_search(options):
       videos.append("%s (%s)" % (search_result["snippet"]["playlistTitle"],
                                  search_result["id"]["playlistId"]))
   return search_response
-  
+
+
+
 ################################################################################
 # Results Stuff
 ################################################################################
@@ -288,7 +290,16 @@ def results():
       #~ title_list=title_list,
       # video_ids_title = video_ids_title,
     )
-    
+
+################################################################################
+# Coming Soon Stuff
+################################################################################
+
+@app.route("/comingsoon")
+def comingsoon():
+  return flask.render_template(
+    'comingsoon.html')
+
 ################################################################################
 # Generate URL
 ###############################################################################
