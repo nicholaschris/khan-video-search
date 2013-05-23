@@ -1,5 +1,8 @@
 import sys
-sys.path.insert(0, 'lib.zip')
+sys.path.insert(1, 'lib.zip')
+sys.path.append('env/lib/python2.7/site-packages')
+import gdata
+import youtube2
 
 from google.appengine.api import mail
 import flask
@@ -45,6 +48,45 @@ FREEBASE_SEARCH_URL = "https://www.googleapis.com/freebase/v1/search?%s"
 
 # JINJA_ENVIRONMENT = jinja2.Environment(
 #    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+
+###############################################################################
+### New method using YouTube API V2
+###############################################################################
+
+import sys
+#sys.path.append('gdata-2.0.17/src/')
+import gdata.youtube
+import gdata.youtube.service
+import json
+import pprint
+
+def PrintEntryDetails(entry):
+  print entry.media.title.text
+  print entry.media.description.text
+  print entry.media.thumbnail[0].url
+  print entry.media.thumbnail[0].url[24:33]
+
+def PrintVideoFeed(feed):
+  for entry in feed.entry:
+    PrintEntryDetails(entry)
+
+def SearchAndPrint(search_terms):
+  yt_service = gdata.youtube.service.YouTubeService()
+  query = gdata.youtube.service.YouTubeVideoQuery()
+  query.vq = search_terms
+  query.orderby = 'relevance'
+  query.max_results = 5 
+  query.lr = 'nl'
+  query.category = 'Education'
+  query.safeSearch = 'strict'
+  print query
+  feed = yt_service.YouTubeQuery(query)
+  PrintVideoFeed(feed)
+
+# SearchAndPrint('napoleon')
+
+###############################################################################
+
 ################################################################################
 ### DATABASE STUFF FOR STUFF LIKE VIDEO VOTING
 ################################################################################
@@ -262,9 +304,10 @@ def results():
     parser.add_option("--safeSearch", dest="safeSearch", help="none/moderate/strict",
           default="moderate")
     (options, args) = parser.parse_args()
-    video_id_list = get_video_id(options)
-    search_response = youtube_search(options)
-    freebase_response = get_topic_id(search_term, options)
+    #video_id_list = get_video_id(options)
+    #search_response = youtube_search(options)
+    #freebase_response = get_topic_id(search_term, options)
+    new_search_response = youtube2.search_youtube(search_term)
     # print search_response
     # url_for_video = flask.url_for('video', videoId=search_response['items'][0]['id']['videoId'])
     # print url_for_video
@@ -281,10 +324,12 @@ def results():
       # 'results.html',
       'video-div.html',
       html_class='results',
-      search_response = search_response,
-      freebase_response = freebase_response,
+      #search_response = search_response,
+      new_search_response = new_search_response,
+      #freebase_response = freebase_response,
       # url_for_video = url_for_video,
       url_for = flask.url_for,
+      unicode = unicode, 
       #~ search_term=search_term,
       #~ video_ids=video_ids,
       #~ title_list=title_list,

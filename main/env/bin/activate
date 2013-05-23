@@ -46,7 +46,8 @@ _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/bin:$PATH"
 export PATH
 # add gdata path
-export PYTHONPATH="gdata-2.0.17/src/gdata"
+# export PYTHONPATH="gdata-2.0.17/src/"
+export PYTHONPATH='env/lib/python2.7/site-packages/
 
 # unset PYTHONHOME if set
 # this will fail if PYTHONHOME is set to the empty string (which is bad anyway)

@@ -4,7 +4,7 @@
 # if False:
 
 {{search_response}}
-# else
+# elif False:
 {% for video in search_response['items'] %}
 
 <div class='container row-fluid' style="padding:15px 0px">
@@ -24,6 +24,32 @@
   </div>
   
 </div>
+{% endfor %}
+# else
+{% for entry in new_search_response.entry %}
+# if True:
+<div class='container row-fluid' style="padding:15px 0px">
+  <div id="thumbnail-box" class='span3'><a href="/video/{{ unicode(entry.id.text[-11:], 'utf8') }}"><img src="{{ unicode(entry.media.thumbnail[0].url, 'utf8') }}"></a></div>
+  <div class='span9'>
+    <div id="description-box" class='span9'><h4> {{ unicode(entry.author[0].name.text, 'utf8') }} - {{ unicode(entry.media.title.text, 'utf8') }} </h4></div>
+    <div id="description-box" class='span9'><p> {{ unicode(entry.media.description.text, 'utf8') }} </p></div>
+    
+  </div>
+  <div class='span6 btn-group'>
+    {# <div class='btn'><a href='/{{ url_for-video[0] }}'>Watch</a></div> #}
+    <div class='btn'><a href="/video/{{ unicode(entry.id.text[-11:], 'utf8') }}">{# Watch</a></div> #}Bekijk</a></div>
+    {# <div class='btn'><a href='/{{ url_for_video }}'>Watch</a></div> #}
+    <div class='btn'><a href="/comingsoon">{# Rate</a></div> #}Beoordeel</a></div>
+    <div class='btn'><a href="/comingsoon">{# Tag</a></div> #}Tag</a></div>
+    {# <div class='no-of-votes'>{{ votes }}</div> #}
+  </div>
+  <div class="clear"></div>
+  <!-- <hr size="2" width="50%"> -->
+</div>
+<hr size="4" width="100%">
+# else
+  hi
+# endif
 {% endfor %}
 # endif
 # endblock

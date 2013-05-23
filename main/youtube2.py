@@ -1,3 +1,5 @@
+import sys
+#sys.path.append('gdata-2.0.17/src/')
 import gdata.youtube
 import gdata.youtube.service
 import json
@@ -18,7 +20,7 @@ def SearchAndPrint(search_terms):
   query = gdata.youtube.service.YouTubeVideoQuery()
   query.vq = search_terms
   query.orderby = 'relevance'
-  query.max_results = 1
+  query.max_results = 5 
   query.lr = 'nl'
   query.category = 'Education'
   query.safeSearch = 'strict'
@@ -27,3 +29,17 @@ def SearchAndPrint(search_terms):
   PrintVideoFeed(feed)
 
 SearchAndPrint('napoleon')
+
+def search_youtube(search_term):
+  yt_service = gdata.youtube.service.YouTubeService()
+  query = gdata.youtube.service.YouTubeVideoQuery()
+  query.vq = search_term.encode('UTF-8') 
+  query.orderby = 'relevance'
+  query.max_results = 5
+  query.lr = 'nl'
+  query.category = 'Education'
+  query.safeSearch = 'strict'
+  feed = yt_service.YouTubeQuery(query)
+  return feed
+
+feed = search_youtube('napoleon')

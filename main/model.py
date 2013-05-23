@@ -12,7 +12,7 @@ class Base(ndb.Model, modelx.BaseX):
 
 
 class Config(Base, modelx.ConfigX):
-  analytics_id = ndb.StringProperty(default='')
+  analytics_id = ndb.StringProperty(default='UA-28120495-2')
   brand_name = ndb.StringProperty(default='Khan Academie')
   facebook_app_id = ndb.StringProperty(default='')
   facebook_app_secret = ndb.StringProperty(default='')
