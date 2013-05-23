@@ -143,25 +143,39 @@
     # endblock
         <!-- Place this asynchronous JavaScript just before your </body> tag -->
       <script type="text/javascript">
-      (function() {
-        var po = document.createElement('script');
-        po.type = 'text/javascript'; po.async = true;
-        po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(po, s);
-      })();
+	      (function() {
+		var po = document.createElement('script');
+		po.type = 'text/javascript'; po.async = true;
+		po.src = 'https://apis.google.com/js/client:plusone.js?onload=render';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(po, s);
+	      })();
 
-      function render() {
-        gapi.signin.render('customBtn', {
-          //'callback': 'signinCallback',
-          'clientid': '841077041629.apps.googleusercontent.com',
-          'cookiepolicy': 'single_host_origin',
-          'requestvisibleactions': 'http://schemas.google.com/AddActivity',
-          'scope': 'https://www.googleapis.com/auth/plus.login'
-        });
-      }
-      </script>
-      <!-- End asynchronous Javascript -->
+	      function render() {
+		gapi.signin.render('customBtn', {
+		  //'callback': 'signinCallback',
+		  'clientid': '841077041629.apps.googleusercontent.com',
+		  'cookiepolicy': 'single_host_origin',
+		  'requestvisibleactions': 'http://schemas.google.com/AddActivity',
+		  'scope': 'https://www.googleapis.com/auth/plus.login'
+		});
+	      }
+	      </script>
+	      <!-- End asynchronous Javascript -->
+	     <!-- Google analytics script -->
+	     <script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-28120495-2']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
   </body>
 </html>
 
