@@ -28,7 +28,7 @@ def SearchAndPrint(search_terms):
   feed = yt_service.YouTubeQuery(query)
   PrintVideoFeed(feed)
 
-SearchAndPrint('napoleon')
+SearchAndPrint('oppervlakte driehoek')
 
 def search_youtube(search_term):
   yt_service = gdata.youtube.service.YouTubeService()

@@ -32,7 +32,7 @@
   <div id="thumbnail-box" class='span3'><a href="/video/{{ unicode(entry.id.text[-11:], 'utf8') }}"><img src="{{ unicode(entry.media.thumbnail[0].url, 'utf8') }}"></a></div>
   <div class='span9'>
     <div id="description-box" class='span9'><h4> {{ unicode(entry.author[0].name.text, 'utf8') }} - {{ unicode(entry.media.title.text, 'utf8') }} </h4></div>
-    <div id="description-box" class='span9'><p> {{ unicode(entry.media.description.text, 'utf8') }} </p></div>
+    <div id="description-box" class='span9'><p> {% if entry.media.description.text != None %} {{ unicode(entry.media.description.text, 'utf8') }} {% endif %}</p></div>
     
   </div>
   <div class='span6 btn-group'>
