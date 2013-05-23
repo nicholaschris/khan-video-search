@@ -38,6 +38,7 @@ def search_youtube(search_term):
   query.max_results = 5
   query.lr = 'nl'
   query.category = 'Education'
+  query.categories.append('Education')
   query.safeSearch = 'strict'
   feed = yt_service.YouTubeQuery(query)
   return feed
