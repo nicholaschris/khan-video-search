@@ -3,6 +3,10 @@ Khan Video Search
   
   A webapp based on gae-init (see below for links) that allows users to search for 
   Dutch educational youtube videos...  
+  
+Issues:
+  
+  - Don't run ./build.py
 
 TODO:
 
